@@ -29,12 +29,11 @@ bool is_prime(unsigned long long n)
     
 int main(int argc, const char * argv[]) {
     
-    unsigned long long a = 9;
-    unsigned long long b = 11;
-    
-    std::cout << "Is " << a << " prime? " << (is_prime(a) ? "yes" : "no") << "\n";
-    
-    std::cout << "Is " << b << " prime? " << (is_prime(b) ? "yes" : "no") << "\n";
+    for (unsigned long long n = 2; n <=  20; ++n) {
+        if (is_prime(n)) {
+            std::cout << n << " is prime\n";
+        }
+    }
     
     return 0;
 }
