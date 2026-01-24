@@ -29,11 +29,24 @@ bool is_prime(unsigned long long n)
     
 int main(int argc, const char * argv[]) {
     
-    for (unsigned long long n = 2; n <=  20; ++n) {
+    unsigned long long limit = 100000;
+    unsigned long long count = 0;
+    
+    auto start = std::chrono::steady_clock::now();
+    
+    
+    for (unsigned long long n = 2; n <=  limit; ++n) {
         if (is_prime(n)) {
-            std::cout << n << " is prime\n";
+            ++count;
         }
     }
+    
+    auto end = std::chrono::steady_clock::now();
+    auto result = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+    
+    std::cout << "Limit: " << limit << "\n";
+    std::cout << "Prime count: " << count << "\n";
+    std::cout << "Time (ms): " << result << "\n";
     
     return 0;
 }
