@@ -30,7 +30,24 @@ bool is_prime(unsigned long long n)
 int main(int argc, const char * argv[]) {
     
     unsigned long long limit = 100000;
-    unsigned long long count = 0;
+    unsigned long long mid = limit / 2;
+    
+    unsigned long long count1 = 0;
+    unsigned long long count2 = 0;
+    
+    // first half
+    for (unsigned long long n = 2; n <= mid; ++n) {
+        if (is_prime(n)) {
+            ++count1;
+        }
+    }
+    
+    // second half
+    for (unsigned long long n = mid + 1; n <= limit; ++n) {
+        if (is_prime(n)) {
+            ++count2;
+        }
+    }
     
     auto start = std::chrono::steady_clock::now();
     
