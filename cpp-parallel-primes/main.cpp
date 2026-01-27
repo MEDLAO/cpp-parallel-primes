@@ -35,6 +35,8 @@ int main(int argc, const char * argv[]) {
     unsigned long long count1 = 0;
     unsigned long long count2 = 0;
     
+    auto start = std::chrono::steady_clock::now();
+    
     // first half
     for (unsigned long long n = 2; n <= mid; ++n) {
         if (is_prime(n)) {
@@ -49,23 +51,22 @@ int main(int argc, const char * argv[]) {
         }
     }
     
-    auto start = std::chrono::steady_clock::now();
     
-    
-    /*for (unsigned long long n = 2; n <=  limit; ++n) {
-        if (is_prime(n)) {
-            ++count;
-        }
-    }*/
+    auto end = std::chrono::steady_clock::now();
     
     unsigned long long total = count1 + count2;
     
-    auto end = std::chrono::steady_clock::now();
+    
     auto result = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
     
     std::cout << "Limit: " << limit << "\n";
-    std::cout << "Prime count: " << count << "\n";
+    std::cout << "Prime count: " << total << "\n";
     std::cout << "Time (ms): " << result << "\n";
+    
+    // two loop result:
+    // Limit: 100000
+    // Prime count: 9592
+    // Time (ms): 15
     
     return 0;
 }
