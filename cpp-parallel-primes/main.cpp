@@ -24,7 +24,17 @@ bool is_prime(unsigned long long n)
     
     return true;
 }
-    
+
+void count_primes_in_range(unsigned long long start,
+                           unsigned long long end,
+                           unsigned long long& out_count)
+{
+    for (unsigned long long n = start; n <= end; ++n) {
+        if (is_prime(n)) {
+            ++out_count;
+        }
+    }
+}
     
     
 int main(int argc, const char * argv[]) {
