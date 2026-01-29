@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <thread>
 
 
 bool is_prime(unsigned long long n)
@@ -47,20 +48,8 @@ int main(int argc, const char * argv[]) {
     
     auto start = std::chrono::steady_clock::now();
     
-    // first half
-    for (unsigned long long n = 2; n <= mid; ++n) {
-        if (is_prime(n)) {
-            ++count1;
-        }
-    }
-    
-    // second half
-    for (unsigned long long n = mid + 1; n <= limit; ++n) {
-        if (is_prime(n)) {
-            ++count2;
-        }
-    }
-    
+    count_primes_in_range(2, mid, count1);
+    count_primes_in_range(mid + 1, limit, count2);
     
     auto end = std::chrono::steady_clock::now();
     
