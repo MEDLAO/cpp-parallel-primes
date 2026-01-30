@@ -48,8 +48,14 @@ int main(int argc, const char * argv[]) {
     
     auto start = std::chrono::steady_clock::now();
     
-    count_primes_in_range(2, mid, count1);
-    count_primes_in_range(mid + 1, limit, count2);
+    //count_primes_in_range(2, mid, count1);
+    //count_primes_in_range(mid + 1, limit, count2);
+    
+    std::thread t1(count_primes_in_range, 2, mid, std::ref(count1));
+    std::thread t2(count_primes_in_range, mid + 1, limit, std::ref(count2));
+    
+    t1.join();
+    t2.join();
     
     auto end = std::chrono::steady_clock::now();
     
