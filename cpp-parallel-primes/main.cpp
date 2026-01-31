@@ -43,6 +43,9 @@ int main(int argc, const char * argv[]) {
     unsigned long long limit = 100000;
     unsigned long long mid = limit / 2;
     
+    unsigned int n = std::thread::hardware_concurrency();
+    unsigned long long chunk_size = limit/n;
+    
     unsigned long long count1 = 0;
     unsigned long long count2 = 0;
     
@@ -72,6 +75,12 @@ int main(int argc, const char * argv[]) {
     // Limit: 100000
     // Prime count: 9592
     // Time (ms): 15
+    
+    // Limit: 100000
+    // Prime count: 9592
+    // Time (ms): 9
+    
+    std::cout << n << " concurrent threads are supported.\n";
     
     return 0;
 }
