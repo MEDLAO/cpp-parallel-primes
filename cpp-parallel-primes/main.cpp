@@ -45,6 +45,7 @@ int main(int argc, const char * argv[]) {
     
     unsigned int n = std::thread::hardware_concurrency();
     unsigned long long chunk_size = limit/n;
+    unsigned long long range_start = i * chunk_size + 2;
     
     unsigned long long count1 = 0;
     unsigned long long count2 = 0;
