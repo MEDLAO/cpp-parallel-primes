@@ -45,15 +45,28 @@ int main(int argc, const char * argv[]) {
     
     unsigned int n = std::thread::hardware_concurrency();
     unsigned long long chunk_size = limit/n;
-    unsigned long long range_start = i * chunk_size + 2;
     
     unsigned long long count1 = 0;
     unsigned long long count2 = 0;
     
-    auto start = std::chrono::steady_clock::now();
+    for (unsigned int i = 0; i < n; ++i) {
+        unsigned long long range_start = i * chunk_size + 2;
+        unsigned long long range_end;
+        
+        if (i == n - 1)
+            range_end = limit;
+        else
+            range_end = (i + 1) * chunk_size + 1;
+        
+        std::cout << "Worker " << i << " -> [" << range_start << ", " << range_end << "]\n";
+                    
+        }
     
-    //count_primes_in_range(2, mid, count1);
-    //count_primes_in_range(mid + 1, limit, count2);
+    
+    /*auto start = std::chrono::steady_clock::now();
+    
+    count_primes_in_range(2, mid, count1);
+    count_primes_in_range(mid + 1, limit, count2);
     
     std::thread t1(count_primes_in_range, 2, mid, std::ref(count1));
     std::thread t2(count_primes_in_range, mid + 1, limit, std::ref(count2));
@@ -70,7 +83,7 @@ int main(int argc, const char * argv[]) {
     
     std::cout << "Limit: " << limit << "\n";
     std::cout << "Prime count: " << total << "\n";
-    std::cout << "Time (ms): " << result << "\n";
+    std::cout << "Time (ms): " << result << "\n";*/
     
     // two loop result:
     // Limit: 100000
