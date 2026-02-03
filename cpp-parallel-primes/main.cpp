@@ -8,6 +8,7 @@
 #include <iostream>
 #include <cmath>
 #include <thread>
+#include <vector>
 
 
 bool is_prime(unsigned long long n)
@@ -48,6 +49,9 @@ int main(int argc, const char * argv[]) {
     
     unsigned long long count1 = 0;
     unsigned long long count2 = 0;
+    
+    std::vector<unsigned long long> counts(n, 0);
+    std::vector<std::thread> threads;
     
     for (unsigned int i = 0; i < n; ++i) {
         unsigned long long range_start = i * chunk_size + 2;
