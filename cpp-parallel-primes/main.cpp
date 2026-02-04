@@ -62,7 +62,14 @@ int main(int argc, const char * argv[]) {
         else
             range_end = (i + 1) * chunk_size + 1;
         
-        std::cout << "Worker " << i << " -> [" << range_start << ", " << range_end << "]\n";
+        //std::cout << "Worker " << i << " -> [" << range_start << ", " << range_end << "]\n";
+        threads.emplace_back(
+            count_primes_in_range,
+            range_start,
+            range_end,
+            std::ref(counts[i])
+        );
+
                     
         }
     
