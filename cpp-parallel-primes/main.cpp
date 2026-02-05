@@ -63,6 +63,7 @@ int main(int argc, const char * argv[]) {
             range_end = (i + 1) * chunk_size + 1;
         
         //std::cout << "Worker " << i << " -> [" << range_start << ", " << range_end << "]\n";
+        
         threads.emplace_back(
             count_primes_in_range,
             range_start,
@@ -72,6 +73,11 @@ int main(int argc, const char * argv[]) {
 
                     
         }
+    
+    for (auto& t : threads) {
+        t.join();
+    }
+    
     
     
     /*auto start = std::chrono::steady_clock::now();
