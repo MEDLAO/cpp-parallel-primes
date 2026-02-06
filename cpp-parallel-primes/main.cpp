@@ -53,6 +53,8 @@ int main(int argc, const char * argv[]) {
     std::vector<unsigned long long> counts(n, 0);
     std::vector<std::thread> threads;
     
+    auto start = std::chrono::steady_clock::now();
+    
     for (unsigned int i = 0; i < n; ++i) {
         unsigned long long range_start = i * chunk_size + 2;
         unsigned long long range_end;
@@ -78,7 +80,19 @@ int main(int argc, const char * argv[]) {
         t.join();
     }
     
+    auto end = std::chrono::steady_clock::now();
+    auto result = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
     
+    unsigned long long total = 0;
+    
+    for (auto c : counts) {
+        total += c;
+    }
+    
+    
+    std::cout << "Prime count: " << total << "\n";
+    std::cout << "Time (ms): " << result << "\n";
+    std::cout << n << " concurrent threads are supported.\n";
     
     /*auto start = std::chrono::steady_clock::now();
     
@@ -111,7 +125,6 @@ int main(int argc, const char * argv[]) {
     // Prime count: 9592
     // Time (ms): 9
     
-    std::cout << n << " concurrent threads are supported.\n";
     
     return 0;
 }
