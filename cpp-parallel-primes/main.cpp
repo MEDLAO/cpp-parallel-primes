@@ -48,11 +48,15 @@ int main(int argc, const char * argv[]) {
         limit = std::stoull(argv[1]);
     }
     
-    unsigned long long limit = 100000;
-    unsigned long long mid = limit / 2;
-    
     unsigned int n = std::thread::hardware_concurrency();
     //unsigned int n = 1;
+    
+    if (argc >= 3) {
+        n = std::stoul(argv[2]);
+    }
+    
+    unsigned long long mid = limit / 2;
+    
     unsigned long long chunk_size = limit/n;
     
     unsigned long long count1 = 0;
