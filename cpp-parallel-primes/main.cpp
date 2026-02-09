@@ -55,6 +55,20 @@ int main(int argc, const char * argv[]) {
         n = std::stoul(argv[2]);
     }
     
+    // Temporary test values
+    limit = 1;
+    n = 0;
+    
+    if (limit < 2) {
+        std::cout << "Error: limit must be >=2\n";
+        return 1;
+    }
+    
+    if (n == 0) {
+        std::cout << "Error: thread count must be >= 1\n";
+        return 1;
+    }
+    
     unsigned long long mid = limit / 2;
     
     unsigned long long chunk_size = limit/n;
