@@ -55,9 +55,6 @@ int main(int argc, const char * argv[]) {
         n = std::stoul(argv[2]);
     }
     
-    // Temporary test values
-    limit = 1;
-    n = 0;
     
     if (limit < 2) {
         std::cout << "Error: limit must be >=2\n";
